@@ -1,0 +1,48 @@
+spring:
+  datasource:
+    # h2 jdbc driver
+    driverClassName: org.h2.Driver
+    # jdbc:h2:mem:test  设置为内存模式,应用关闭后销毁 也可以设置保存到文件中 jdbc:h2:file:/data/h2-data
+    # DB_CLOSE_DELAY=-1  没有连接时会自动销毁数据库, -1表示关闭这个设置
+    # MODE=MySQL 兼容mysql
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MODE=MySQL
+    username: sa
+    password:
+
+  h2:
+    console:
+      # 开启控制台   可以在浏览器中访问
+      enabled: true
+      settings:
+        # 开启栈追踪
+        trace: true
+        # 允许跨域
+        web-allow-others: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # 测试时自动创建和删除表
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root: info
+    com.example.quota.dao: DEBUG
+  file:
+    name: test_quota.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [logID=%X{logID}] [%thread] %-5level %logger{36} - %msg%n"
+
+
+# 默认竟然不是驼峰！
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  port: 8082
+

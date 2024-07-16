@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    password: Aa123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/quota?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&autoReconnect=true
+    username: root
+
+logging:
+  level:
+    root: info
+#    com.example.quota.dao: DEBUG
+  file:
+    name: quota.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [logID=%X{logID}] [%thread] %-5level %logger{36} - %msg%n"
+
+
+# 默认竟然不是驼峰！
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  port: 8081
